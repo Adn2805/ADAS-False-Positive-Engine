@@ -10,7 +10,9 @@ from typing import Optional
 import pandas as pd
 from fastapi import FastAPI, UploadFile, File, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import StreamingResponse
+from fastapi.responses import StreamingResponse, JSONResponse
+from fastapi import Request
+import traceback
 
 from app.metrics import compute_fused_confidence, compute_confusion_metrics
 from app.classifier import classify_root_cause, get_root_cause_explanation
@@ -35,6 +37,14 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    print("FATAL ERROR CAUGHT:", exc)
+    return JSONResponse(
+        status_code=500,
+        content={"detail": f"Vercel Backend Crash: {str(exc)} | TRACE: {traceback.format_exc()}"}
+    )
 
 # In-memory dataset store (keyed by dataset_id)
 _datasets: dict[str, pd.DataFrame] = {}
