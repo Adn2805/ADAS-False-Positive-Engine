@@ -268,14 +268,16 @@
 .grid-2col {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 3rem;
+  gap: 1.5rem;
   align-items: start;
+  min-width: 0;
 }
 
 @media (min-width: 1024px) {
   .grid-2col {
     grid-template-columns: 1fr 1fr;
     align-items: start;
+    gap: 3rem;
   }
 
   .grid-2col--charts {
@@ -286,6 +288,45 @@
     grid-template-columns: 1.5fr 1fr;
     align-items: start;
   }
+}
+
+/* Force flex containers to boundary so Recharts SVG doesn't overflow mobile width */
+.charts-section,
+.event-section-wrapper,
+.dashboard-content>div {
+  min-width: 0;
+  max-width: 100vw;
+}
+
+/* Horizontally scrollable data table on mobile */
+.upload-tutorial__table-wrapper {
+  max-width: 100%;
+  overflow-x: auto;
+  margin-top: 1rem;
+  border-radius: 8px;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-strong);
+}
+
+.csv-table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+}
+
+.csv-table th,
+.csv-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 0.875rem;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+.csv-table th {
+  color: var(--text-primary);
+  font-weight: 500;
+  white-space: nowrap;
 }
 
 @keyframes slideUpFade {

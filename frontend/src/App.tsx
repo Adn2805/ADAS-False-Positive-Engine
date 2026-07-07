@@ -42,27 +42,27 @@ function App() {
             <UploadPanel />
           </div>
         ) : (
-          <div className="dashboard-content">
-            <div className="mb-4rem max-w-3xl mx-auto">
+          <div className="dashboard-content w-full overflow-hidden">
+            <div className="mb-12 lg:mb-16 max-w-3xl mx-auto w-full">
               <UploadPanel />
             </div>
 
             {/* Row 2: Metrics + Slider */}
-            <div className="grid-2col gap-3rem mb-4rem">
+            <div className="grid-2col mb-12 lg:mb-16 w-full">
               <MetricsCards />
               <ThresholdSlider />
             </div>
 
             {/* Row 3: Root Cause + Timeline */}
-            <div className="grid-2col gap-3rem mb-4rem">
+            <div className="grid-2col mb-12 lg:mb-16 w-full">
               <RootCauseCharts />
               <ConfidenceTimeline />
             </div>
 
             {/* Row 4: Filters + Events */}
-            <div className="event-section-wrapper mb-4rem">
+            <div className="event-section-wrapper mb-12 lg:mb-16 w-full">
               <FilterBar />
-              <div className="mt-6">
+              <div className="mt-6 w-full overflow-hidden">
                 <EventExplainer />
               </div>
             </div>
