@@ -2,7 +2,6 @@ fastapi
 uvicorn[standard]
 pandas
 numpy
-opencv-python-headless
 pydantic
 python-multipart
 pytest
