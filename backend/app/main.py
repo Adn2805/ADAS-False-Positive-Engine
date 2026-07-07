@@ -28,6 +28,7 @@ app = FastAPI(
     title="ADAS False-Positive Root Cause Engine API",
     description="Analyze, classify, and optimize ADAS false-positive detections with real metrics.",
     version="2.0.0",
+    root_path="/api",
 )
 
 app.add_middleware(
