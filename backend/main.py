@@ -1,7 +1,11 @@
 import sys
+import os
 import traceback
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
+
+# Force Vercel's AWS Lambda to recognize the 'backend' folder as the Python root
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 # Vercel's static AST parser REQUIRES exactly "app = FastAPI()" at the top level
 app = FastAPI()
